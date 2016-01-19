@@ -13,6 +13,7 @@
 		FF9581091C4DC1E50007B1B5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF9581071C4DC1E50007B1B5 /* Main.storyboard */; };
 		FF95810B1C4DC1E50007B1B5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FF95810A1C4DC1E50007B1B5 /* Assets.xcassets */; };
 		FF95810E1C4DC1E50007B1B5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = FF95810C1C4DC1E50007B1B5 /* LaunchScreen.storyboard */; };
+		FF9581161C4DC2E00007B1B5 /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF9581151C4DC2E00007B1B5 /* Session.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		FF95810A1C4DC1E50007B1B5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		FF95810D1C4DC1E50007B1B5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		FF95810F1C4DC1E50007B1B5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FF9581151C4DC2E00007B1B5 /* Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				FF9581011C4DC1E50007B1B5 /* AppDelegate.swift */,
 				FF9581031C4DC1E50007B1B5 /* FirstViewController.swift */,
 				FF9581051C4DC1E50007B1B5 /* SecondViewController.swift */,
+				FF9581151C4DC2E00007B1B5 /* Session.swift */,
 				FF9581071C4DC1E50007B1B5 /* Main.storyboard */,
 				FF95810A1C4DC1E50007B1B5 /* Assets.xcassets */,
 				FF95810C1C4DC1E50007B1B5 /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF9581161C4DC2E00007B1B5 /* Session.swift in Sources */,
 				FF9581061C4DC1E50007B1B5 /* SecondViewController.swift in Sources */,
 				FF9581021C4DC1E50007B1B5 /* AppDelegate.swift in Sources */,
 				FF9581041C4DC1E50007B1B5 /* FirstViewController.swift in Sources */,
