@@ -13,7 +13,8 @@ class FirstViewController: UIViewController, MCNearbyServiceAdvertiserDelegate, 
 
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var pandaImageView: UIImageView!
-    @IBOutlet weak var sendButton: UIButton!
+    @IBOutlet weak var sendResourceButton: UIButton!
+    @IBOutlet weak var sendDataButton: UIButton!
 
     private var advertiser: MCNearbyServiceAdvertiser!
 
@@ -46,7 +47,12 @@ class FirstViewController: UIViewController, MCNearbyServiceAdvertiserDelegate, 
         let documents: NSString = paths.first!
         let photoPath = documents.stringByAppendingPathComponent("panda.png")
 
-        UIImagePNGRepresentation(pandaImageView.image!)?.writeToFile(photoPath, atomically: true)
+        guard let data = UIImagePNGRepresentation(pandaImageView.image!) else {
+            statusLabel.text = "Failed to get data from panda image."
+            return
+        }
+
+        data.writeToFile(photoPath, atomically: true)
 
         let photoURL = NSURL(fileURLWithPath: photoPath)
 
@@ -58,6 +64,22 @@ class FirstViewController: UIViewController, MCNearbyServiceAdvertiserDelegate, 
                     self.statusLabel.text = "Image sent!"
                 }
             }
+        } else {
+            statusLabel.text = "No other peers to send data to."
+        }
+    }
+
+    private func sendPhotoAsDataToPeer() {
+        if let data = UIImagePNGRepresentation(pandaImageView.image!) {
+            if let otherPeer = multipeerSession.session.connectedPeers.filter({ $0 != multipeerSession.localPeer }).first {
+                do {
+                    try multipeerSession.session.sendData(data, toPeers: [otherPeer], withMode: .Reliable)
+                } catch { print(error) }
+            } else {
+                statusLabel.text = "No other peers to send data to."
+            }
+        } else {
+            statusLabel.text = "Failed to get data from panda image."
         }
     }
 
@@ -76,7 +98,8 @@ class FirstViewController: UIViewController, MCNearbyServiceAdvertiserDelegate, 
 
     func session(session: MCSession, peer peerID: MCPeerID, didChangeState state: MCSessionState) {
         dispatch_async(dispatch_get_main_queue()) {
-            self.sendButton.enabled = state == .Connected
+            self.sendResourceButton.enabled = state == .Connected
+            self.sendDataButton.enabled = state == .Connected
 
             switch state {
             case .Connected:
@@ -109,6 +132,10 @@ class FirstViewController: UIViewController, MCNearbyServiceAdvertiserDelegate, 
 
     @IBAction func sendButtonTapped(sender: AnyObject) {
         sendPhotoToPeer()
+    }
+
+    @IBAction func sendDataButtonTapped(sender: AnyObject) {
+        sendPhotoAsDataToPeer()
     }
 }
 

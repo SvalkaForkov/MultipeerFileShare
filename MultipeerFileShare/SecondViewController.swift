@@ -69,7 +69,11 @@ class SecondViewController: UIViewController, MCNearbyServiceBrowserDelegate, MC
     }
 
     func session(session: MCSession, didReceiveData data: NSData, fromPeer peerID: MCPeerID) {
-
+        let image = UIImage(data: data)
+        dispatch_async(dispatch_get_main_queue()) {
+            self.statusLabel.text = "Received an image!"
+            self.pandaImageView.image = image
+        }
     }
 
     func session(session: MCSession, didStartReceivingResourceWithName resourceName: String, fromPeer peerID: MCPeerID,
